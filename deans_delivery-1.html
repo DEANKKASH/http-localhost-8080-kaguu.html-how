@@ -1,0 +1,1088 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Dean's Delivery Services – Harare, Zimbabwe</title>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800;900&family=Barlow:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --black: #0a0a0a;
+      --dark: #111111;
+      --card-bg: #161616;
+      --green: #22c55e;
+      --green-light: #4ade80;
+      --green-dim: #16a34a;
+      --green-glow: rgba(34,197,94,0.15);
+      --white: #f5f5f5;
+      --muted: #888;
+      --border: rgba(34,197,94,0.18);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--black);
+      color: var(--white);
+      font-family: 'Barlow', sans-serif;
+      font-weight: 400;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 999;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 5%;
+      height: 68px;
+      background: rgba(10,10,10,0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-logo {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 900;
+      font-size: 1.5rem;
+      letter-spacing: 0.04em;
+      color: var(--white);
+      text-decoration: none;
+    }
+
+    .nav-logo span { color: var(--green); }
+
+    .nav-links {
+      display: flex; gap: 2rem; list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 500;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      transition: color 0.25s;
+    }
+
+    .nav-links a:hover { color: var(--green); }
+
+    .nav-cta {
+      background: var(--green);
+      color: var(--black) !important;
+      padding: 0.45rem 1.2rem;
+      border-radius: 4px;
+      font-weight: 700 !important;
+      transition: background 0.25s !important;
+    }
+
+    .nav-cta:hover { background: var(--green-light) !important; color: var(--black) !important; }
+
+    .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; }
+    .hamburger span { width: 24px; height: 2px; background: var(--white); display: block; transition: 0.3s; }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      display: flex; align-items: center;
+      padding: 100px 5% 60px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse 60% 60% at 70% 50%, rgba(34,197,94,0.08) 0%, transparent 70%),
+        radial-gradient(ellipse 40% 40% at 10% 80%, rgba(34,197,94,0.05) 0%, transparent 60%);
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+      max-width: 1200px;
+      margin: 0 auto;
+      position: relative;
+    }
+
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      background: rgba(34,197,94,0.1);
+      border: 1px solid var(--border);
+      padding: 0.3rem 0.9rem;
+      border-radius: 99px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--green);
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-badge::before {
+      content: '';
+      width: 7px; height: 7px;
+      background: var(--green);
+      border-radius: 50%;
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0%,100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.4; transform: scale(1.3); }
+    }
+
+    .hero-title {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 900;
+      font-size: clamp(3rem, 6vw, 5.5rem);
+      line-height: 0.95;
+      letter-spacing: -0.01em;
+      text-transform: uppercase;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-title .green { color: var(--green); }
+
+    .hero-subtitle {
+      font-size: 1.1rem;
+      color: #aaa;
+      max-width: 480px;
+      margin-bottom: 2.5rem;
+      line-height: 1.7;
+    }
+
+    .hero-actions {
+      display: flex; gap: 1rem; flex-wrap: wrap;
+    }
+
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      background: var(--green);
+      color: var(--black);
+      font-weight: 700;
+      font-size: 0.95rem;
+      letter-spacing: 0.04em;
+      padding: 0.85rem 1.8rem;
+      border-radius: 6px;
+      text-decoration: none;
+      transition: background 0.25s, transform 0.2s;
+    }
+
+    .btn-primary:hover { background: var(--green-light); transform: translateY(-2px); }
+
+    .btn-outline {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      border: 1.5px solid var(--border);
+      color: var(--white);
+      font-weight: 600;
+      font-size: 0.95rem;
+      padding: 0.85rem 1.8rem;
+      border-radius: 6px;
+      text-decoration: none;
+      transition: border-color 0.25s, background 0.25s;
+    }
+
+    .btn-outline:hover { border-color: var(--green); background: var(--green-glow); }
+
+    /* Hero visual */
+    .hero-visual {
+      display: flex; justify-content: center; align-items: center;
+    }
+
+    .hero-card-stack {
+      position: relative;
+      width: 100%;
+      max-width: 420px;
+    }
+
+    .hero-main-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 2.5rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-main-card::before {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0; height: 3px;
+      background: linear-gradient(90deg, var(--green), var(--green-light), var(--green-dim));
+    }
+
+    .card-icon {
+      font-size: 3.5rem;
+      margin-bottom: 1.2rem;
+      display: block;
+    }
+
+    .card-title {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 800;
+      font-size: 1.4rem;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+      margin-bottom: 0.5rem;
+    }
+
+    .card-desc {
+      color: var(--muted);
+      font-size: 0.9rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .price-row {
+      display: flex; align-items: baseline; gap: 0.4rem;
+    }
+
+    .price-from { color: var(--muted); font-size: 0.85rem; }
+    .price-val {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 900;
+      font-size: 2.4rem;
+      color: var(--green);
+    }
+    .price-unit { color: var(--muted); font-size: 0.85rem; }
+
+    .floating-tag {
+      position: absolute;
+      background: var(--green);
+      color: var(--black);
+      font-weight: 700;
+      font-size: 0.75rem;
+      padding: 0.35rem 0.75rem;
+      border-radius: 99px;
+      letter-spacing: 0.06em;
+    }
+
+    .tag-fast { top: -12px; right: 24px; }
+    .tag-area { bottom: -12px; left: 24px; }
+
+    /* Stats row */
+    .stats-row {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+
+    .stat-item {
+      background: rgba(34,197,94,0.06);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1rem;
+      text-align: center;
+    }
+
+    .stat-number {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 900;
+      font-size: 1.8rem;
+      color: var(--green);
+      line-height: 1;
+    }
+
+    .stat-label {
+      font-size: 0.75rem;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-top: 0.3rem;
+    }
+
+    /* ── SECTION SHARED ── */
+    section {
+      padding: 90px 5%;
+    }
+
+    .section-inner { max-width: 1200px; margin: 0 auto; }
+
+    .section-label {
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--green);
+      margin-bottom: 0.75rem;
+    }
+
+    .section-title {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 800;
+      font-size: clamp(2rem, 4vw, 3rem);
+      text-transform: uppercase;
+      letter-spacing: 0.01em;
+      line-height: 1.05;
+      margin-bottom: 1rem;
+    }
+
+    .section-sub {
+      color: var(--muted);
+      font-size: 1rem;
+      max-width: 560px;
+      line-height: 1.7;
+    }
+
+    .section-header { margin-bottom: 3.5rem; }
+
+    /* ── SERVICES ── */
+    #services { background: var(--dark); }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .service-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 2rem;
+      transition: transform 0.25s, border-color 0.25s, box-shadow 0.25s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .service-card::after {
+      content: '';
+      position: absolute; bottom: 0; left: 0; right: 0; height: 2px;
+      background: linear-gradient(90deg, transparent, var(--green), transparent);
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+
+    .service-card:hover { transform: translateY(-6px); border-color: var(--green); box-shadow: 0 12px 40px rgba(34,197,94,0.12); }
+    .service-card:hover::after { opacity: 1; }
+
+    .service-icon {
+      font-size: 2.2rem;
+      margin-bottom: 1.2rem;
+      display: block;
+    }
+
+    .service-name {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 800;
+      font-size: 1.25rem;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      margin-bottom: 0.6rem;
+      color: var(--white);
+    }
+
+    .service-desc { color: var(--muted); font-size: 0.9rem; line-height: 1.6; }
+
+    /* ── HOW IT WORKS ── */
+    .steps-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 0;
+      position: relative;
+    }
+
+    .step {
+      padding: 2rem;
+      position: relative;
+      text-align: center;
+    }
+
+    .step:not(:last-child)::after {
+      content: '→';
+      position: absolute;
+      right: 0; top: 50%;
+      transform: translateY(-50%);
+      color: var(--green);
+      font-size: 1.4rem;
+      opacity: 0.5;
+    }
+
+    .step-number {
+      width: 52px; height: 52px;
+      border-radius: 50%;
+      border: 2px solid var(--green);
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 900;
+      font-size: 1.3rem;
+      color: var(--green);
+      margin: 0 auto 1.2rem;
+    }
+
+    .step-title {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 800;
+      font-size: 1.1rem;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      margin-bottom: 0.5rem;
+    }
+
+    .step-desc { color: var(--muted); font-size: 0.88rem; }
+
+    /* ── PRICING ── */
+    #pricing { background: var(--dark); }
+
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.5rem;
+      max-width: 860px;
+    }
+
+    .pricing-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 2.2rem;
+      transition: transform 0.25s;
+    }
+
+    .pricing-card.featured {
+      border-color: var(--green);
+      background: linear-gradient(145deg, #161616, #1a2a1a);
+      position: relative;
+      transform: scale(1.02);
+    }
+
+    .pricing-card:hover { transform: translateY(-4px); }
+    .pricing-card.featured:hover { transform: scale(1.02) translateY(-4px); }
+
+    .featured-badge {
+      position: absolute; top: -12px; right: 24px;
+      background: var(--green);
+      color: var(--black);
+      font-size: 0.72rem;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 0.3rem 0.8rem;
+      border-radius: 99px;
+    }
+
+    .pricing-tier {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700;
+      font-size: 0.8rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--green);
+      margin-bottom: 0.5rem;
+    }
+
+    .pricing-zone {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 900;
+      font-size: 1.6rem;
+      text-transform: uppercase;
+      margin-bottom: 1.2rem;
+    }
+
+    .pricing-price {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 900;
+      font-size: 3rem;
+      color: var(--green);
+      line-height: 1;
+      margin-bottom: 0.3rem;
+    }
+
+    .pricing-price span {
+      font-size: 1.2rem;
+      vertical-align: top;
+      padding-top: 0.5rem;
+      display: inline-block;
+    }
+
+    .pricing-per { color: var(--muted); font-size: 0.85rem; margin-bottom: 1.5rem; }
+
+    .pricing-features { list-style: none; }
+    .pricing-features li {
+      font-size: 0.9rem;
+      color: #ccc;
+      padding: 0.45rem 0;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+      display: flex; align-items: center; gap: 0.6rem;
+    }
+
+    .pricing-features li::before {
+      content: '✓';
+      color: var(--green);
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+
+    /* ── COVERAGE ── */
+    .coverage-flex {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+    }
+
+    .coverage-list { list-style: none; }
+
+    .coverage-list li {
+      display: flex; align-items: center; gap: 1rem;
+      padding: 1rem 0;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .coverage-dot {
+      width: 10px; height: 10px;
+      border-radius: 50%;
+      background: var(--green);
+      flex-shrink: 0;
+    }
+
+    .coverage-dot.secondary { background: var(--muted); opacity: 0.6; }
+
+    .coverage-city { font-weight: 600; font-size: 1rem; }
+    .coverage-note { color: var(--muted); font-size: 0.85rem; margin-top: 0.15rem; }
+
+    .map-placeholder {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 3rem 2rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      min-height: 320px;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+    }
+
+    .map-placeholder::before {
+      content: '';
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(circle at 55% 45%, rgba(34,197,94,0.12), transparent 60%);
+    }
+
+    .map-icon { font-size: 4rem; margin-bottom: 1rem; }
+    .map-label {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 800;
+      font-size: 1.3rem;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: var(--green);
+    }
+    .map-sub { color: var(--muted); font-size: 0.85rem; margin-top: 0.4rem; }
+
+    /* ── WHY US ── */
+    #why { background: var(--dark); }
+
+    .why-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .why-card {
+      padding: 1.8rem;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      background: var(--card-bg);
+      text-align: center;
+      transition: border-color 0.25s;
+    }
+
+    .why-card:hover { border-color: var(--green); }
+
+    .why-icon { font-size: 2.4rem; margin-bottom: 1rem; }
+    .why-title {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 800;
+      font-size: 1.1rem;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      margin-bottom: 0.5rem;
+    }
+    .why-desc { color: var(--muted); font-size: 0.87rem; line-height: 1.6; }
+
+    /* ── CTA BANNER ── */
+    .cta-banner {
+      background: linear-gradient(135deg, #0d1f0d, #0a0a0a);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      padding: 80px 5%;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cta-banner::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse 80% 80% at 50% 50%, rgba(34,197,94,0.07), transparent);
+    }
+
+    .cta-banner .section-inner { position: relative; }
+
+    .cta-banner .section-title { font-size: clamp(2rem, 5vw, 3.5rem); }
+
+    .cta-banner .section-sub { margin: 0 auto 2.5rem; max-width: 500px; }
+
+    .whatsapp-btn {
+      display: inline-flex; align-items: center; gap: 0.75rem;
+      background: #25d366;
+      color: #fff;
+      font-weight: 700;
+      font-size: 1.1rem;
+      padding: 1rem 2.4rem;
+      border-radius: 8px;
+      text-decoration: none;
+      transition: background 0.25s, transform 0.2s;
+      box-shadow: 0 4px 24px rgba(37,211,102,0.3);
+    }
+
+    .whatsapp-btn:hover { background: #1da851; transform: translateY(-2px); box-shadow: 0 8px 32px rgba(37,211,102,0.4); }
+
+    .whatsapp-icon { font-size: 1.4rem; }
+
+    .phone-display {
+      margin-top: 1.5rem;
+      color: var(--muted);
+      font-size: 0.9rem;
+      letter-spacing: 0.04em;
+    }
+
+    .phone-display strong { color: var(--green); }
+
+    /* ── FOOTER ── */
+    footer {
+      background: #080808;
+      border-top: 1px solid var(--border);
+      padding: 3rem 5%;
+    }
+
+    .footer-inner {
+      max-width: 1200px; margin: 0 auto;
+      display: grid; grid-template-columns: 2fr 1fr 1fr;
+      gap: 3rem;
+    }
+
+    .footer-brand .nav-logo { font-size: 1.6rem; }
+    .footer-tagline { color: var(--muted); font-size: 0.88rem; margin-top: 0.75rem; max-width: 280px; line-height: 1.6; }
+
+    .footer-col h4 {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 800;
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--green);
+      margin-bottom: 1rem;
+    }
+
+    .footer-col ul { list-style: none; }
+    .footer-col ul li { padding: 0.35rem 0; }
+    .footer-col ul li a { color: var(--muted); font-size: 0.88rem; text-decoration: none; transition: color 0.2s; }
+    .footer-col ul li a:hover { color: var(--white); }
+    .footer-col ul li span { color: var(--muted); font-size: 0.88rem; }
+
+    .footer-bottom {
+      max-width: 1200px; margin: 2rem auto 0;
+      padding-top: 1.5rem;
+      border-top: 1px solid rgba(255,255,255,0.05);
+      display: flex; justify-content: space-between; align-items: center;
+      color: #555;
+      font-size: 0.82rem;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    /* ── MOBILE ── */
+    @media (max-width: 768px) {
+      .nav-links { display: none; flex-direction: column; position: fixed; top: 68px; left: 0; right: 0; background: var(--dark); padding: 1.5rem 5%; border-bottom: 1px solid var(--border); gap: 1rem; }
+      .nav-links.open { display: flex; }
+      .hamburger { display: flex; }
+
+      .hero-grid { grid-template-columns: 1fr; }
+      .hero-visual { display: none; }
+      .hero { min-height: auto; padding: 100px 5% 60px; }
+
+      .steps-grid { grid-template-columns: 1fr; }
+      .step:not(:last-child)::after { content: '↓'; right: 50%; top: auto; bottom: 0; transform: translateX(50%); }
+
+      .coverage-flex { grid-template-columns: 1fr; }
+
+      .footer-inner { grid-template-columns: 1fr; gap: 2rem; }
+      .footer-bottom { flex-direction: column; text-align: center; }
+
+      .pricing-card.featured { transform: none; }
+    }
+
+    /* fade-in on scroll */
+    .fade-in { opacity: 0; transform: translateY(24px); transition: opacity 0.6s ease, transform 0.6s ease; }
+    .fade-in.visible { opacity: 1; transform: none; }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">DEAN'S <span>DELIVERY</span></a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#how">How It Works</a></li>
+    <li><a href="#pricing">Pricing</a></li>
+    <li><a href="#coverage">Coverage</a></li>
+    <li><a href="https://wa.me/263711629798" target="_blank" class="nav-cta">Order Now</a></li>
+  </ul>
+  <div class="hamburger" id="hamburger" onclick="toggleMenu()" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-grid">
+    <div class="hero-content">
+      <div class="hero-badge">Now Serving Harare &amp; Surrounding Areas</div>
+      <h1 class="hero-title">
+        Fast.<br/>
+        Reliable.<br/>
+        <span class="green">Delivered.</span>
+      </h1>
+      <p class="hero-subtitle">
+        Same-day parcel, food, grocery &amp; document delivery across Harare. Professional. Affordable. WhatsApp-first ordering—no apps needed.
+      </p>
+      <div class="hero-actions">
+        <a href="https://wa.me/263711629798?text=Hello%2C%20I%20would%20like%20to%20place%20a%20delivery%20order." target="_blank" class="btn-primary">
+          📦 Order via WhatsApp
+        </a>
+        <a href="#services" class="btn-outline">View Services</a>
+      </div>
+
+      <div class="stats-row fade-in">
+        <div class="stat-item">
+          <div class="stat-number">$2</div>
+          <div class="stat-label">Starting Price</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">1hr</div>
+          <div class="stat-label">Est. Delivery</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">24/7</div>
+          <div class="stat-label">WhatsApp Support</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-visual fade-in">
+      <div class="hero-card-stack">
+        <div class="hero-main-card">
+          <span class="floating-tag tag-fast">⚡ Express</span>
+          <span class="card-icon">🏍️</span>
+          <div class="card-title">Your delivery is on the way</div>
+          <div class="card-desc">Motorbike courier dispatched — Harare CBD area</div>
+          <div class="price-row">
+            <span class="price-from">From</span>
+            <span class="price-val">$2</span>
+            <span class="price-unit">per delivery</span>
+          </div>
+          <span class="floating-tag tag-area">📍 Harare</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="section-inner">
+    <div class="section-header fade-in">
+      <div class="section-label">What We Deliver</div>
+      <h2 class="section-title">Services Built<br/>for Harare</h2>
+      <p class="section-sub">Whether it's a hot meal, an urgent document, or a package for a client — we move it fast and safely.</p>
+    </div>
+    <div class="services-grid">
+      <div class="service-card fade-in">
+        <span class="service-icon">🍔</span>
+        <div class="service-name">Food &amp; Meals</div>
+        <p class="service-desc">Restaurant pickups and home-cooked meal delivery. Keeping your food hot from kitchen to door.</p>
+      </div>
+      <div class="service-card fade-in">
+        <span class="service-icon">🛒</span>
+        <div class="service-name">Groceries</div>
+        <p class="service-desc">Market runs and grocery store pickups. We shop and deliver so you don't have to leave home.</p>
+      </div>
+      <div class="service-card fade-in">
+        <span class="service-icon">📄</span>
+        <div class="service-name">Documents</div>
+        <p class="service-desc">Urgent document delivery—contracts, invoices, forms. Handled with care and total discretion.</p>
+      </div>
+      <div class="service-card fade-in">
+        <span class="service-icon">📦</span>
+        <div class="service-name">Parcels &amp; Packages</div>
+        <p class="service-desc">Small to medium parcel delivery across Harare. Ideal for online sellers, retailers &amp; SMEs.</p>
+      </div>
+      <div class="service-card fade-in">
+        <span class="service-icon">🏪</span>
+        <div class="service-name">Business Deliveries</div>
+        <p class="service-desc">Regular delivery partnerships with local businesses. Volume discounts available.</p>
+      </div>
+      <div class="service-card fade-in">
+        <span class="service-icon">🚀</span>
+        <div class="service-name">Express Rush</div>
+        <p class="service-desc">Need it there in under an hour? Rush delivery available for time-critical items in the CBD.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section id="how" style="background: var(--dark);">
+  <div class="section-inner">
+    <div class="section-header fade-in" style="text-align:center;">
+      <div class="section-label">Simple Process</div>
+      <h2 class="section-title">Order in 3 Easy Steps</h2>
+      <p class="section-sub" style="margin: 0 auto;">No apps to download. No accounts to create. Just WhatsApp.</p>
+    </div>
+    <div class="steps-grid fade-in">
+      <div class="step">
+        <div class="step-number">1</div>
+        <div class="step-title">Message Us</div>
+        <p class="step-desc">Send us a WhatsApp message with your pickup and drop-off details. We respond fast.</p>
+      </div>
+      <div class="step">
+        <div class="step-number">2</div>
+        <div class="step-title">We Confirm &amp; Dispatch</div>
+        <p class="step-desc">We confirm the price and ETA, then dispatch our rider immediately.</p>
+      </div>
+      <div class="step">
+        <div class="step-number">3</div>
+        <div class="step-title">Delivered!</div>
+        <p class="step-desc">Your item is picked up, transported safely, and delivered to the destination. You pay on delivery.</p>
+      </div>
+    </div>
+    <div style="text-align:center; margin-top:3rem;">
+      <a href="https://wa.me/263711629798?text=Hello%2C%20I%20would%20like%20to%20place%20a%20delivery%20order." target="_blank" class="btn-primary fade-in">
+        <span>💬</span> Start an Order on WhatsApp
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section id="pricing">
+  <div class="section-inner">
+    <div class="section-header fade-in">
+      <div class="section-label">Transparent Pricing</div>
+      <h2 class="section-title">Simple, Flat-Rate<br/>Delivery Fees</h2>
+      <p class="section-sub">No hidden charges. Price depends on distance. We confirm exact fee before every order.</p>
+    </div>
+    <div class="pricing-grid fade-in">
+      <div class="pricing-card">
+        <div class="pricing-tier">Short Distance</div>
+        <div class="pricing-zone">Local Zone</div>
+        <div class="pricing-price"><span>$</span>2</div>
+        <div class="pricing-per">per delivery · within 5km</div>
+        <ul class="pricing-features">
+          <li>CBD &amp; nearby suburbs</li>
+          <li>Fast dispatch</li>
+          <li>WhatsApp tracking updates</li>
+          <li>Pay on delivery</li>
+        </ul>
+      </div>
+      <div class="pricing-card featured">
+        <div class="featured-badge">Most Popular</div>
+        <div class="pricing-tier">Medium Distance</div>
+        <div class="pricing-zone">City-Wide</div>
+        <div class="pricing-price"><span>$</span>3–5</div>
+        <div class="pricing-per">per delivery · 5–20km</div>
+        <ul class="pricing-features">
+          <li>Across Harare suburbs</li>
+          <li>Priority dispatch</li>
+          <li>Real-time WhatsApp updates</li>
+          <li>Pay on delivery</li>
+          <li>Business discount available</li>
+        </ul>
+      </div>
+    </div>
+    <p class="fade-in" style="color:var(--muted); font-size:0.85rem; margin-top:1.5rem;">
+      * Pricing may vary for oversized items or peak hours. Always confirmed before dispatch. Contact us for bulk &amp; business rates.
+    </p>
+  </div>
+</section>
+
+<!-- COVERAGE -->
+<section id="coverage">
+  <div class="section-inner">
+    <div class="coverage-flex">
+      <div class="fade-in">
+        <div class="section-label">Where We Operate</div>
+        <h2 class="section-title">Covering Harare<br/>&amp; Growing</h2>
+        <p class="section-sub" style="margin-bottom:2rem;">Our primary focus is fast, reliable service in Harare. Expansion to nearby cities is planned as we grow.</p>
+        <ul class="coverage-list">
+          <li>
+            <div class="coverage-dot"></div>
+            <div>
+              <div class="coverage-city">Harare CBD &amp; Suburbs</div>
+              <div class="coverage-note">Primary service area · Full coverage</div>
+            </div>
+          </li>
+          <li>
+            <div class="coverage-dot secondary"></div>
+            <div>
+              <div class="coverage-city">Chitungwiza</div>
+              <div class="coverage-note">Secondary area · Available on request</div>
+            </div>
+          </li>
+          <li>
+            <div class="coverage-dot secondary"></div>
+            <div>
+              <div class="coverage-city">Norton</div>
+              <div class="coverage-note">Secondary area · Available on request</div>
+            </div>
+          </li>
+          <li>
+            <div class="coverage-dot" style="background:var(--muted);opacity:0.35;"></div>
+            <div>
+              <div class="coverage-city">Other Cities</div>
+              <div class="coverage-note">Coming soon · As we expand</div>
+            </div>
+          </li>
+        </ul>
+      </div>
+      <div class="map-placeholder fade-in">
+        <div class="map-icon">🗺️</div>
+        <div class="map-label">Harare, Zimbabwe</div>
+        <div class="map-sub">Serving Harare &amp; greater metro area</div>
+        <div style="margin-top:1.5rem; display:flex; flex-wrap:wrap; gap:0.6rem; justify-content:center;">
+          <span style="background:rgba(34,197,94,0.12);border:1px solid var(--border);padding:0.3rem 0.8rem;border-radius:99px;font-size:0.78rem;color:var(--green);">📍 CBD</span>
+          <span style="background:rgba(34,197,94,0.12);border:1px solid var(--border);padding:0.3rem 0.8rem;border-radius:99px;font-size:0.78rem;color:var(--green);">📍 Avondale</span>
+          <span style="background:rgba(34,197,94,0.12);border:1px solid var(--border);padding:0.3rem 0.8rem;border-radius:99px;font-size:0.78rem;color:var(--green);">📍 Borrowdale</span>
+          <span style="background:rgba(34,197,94,0.12);border:1px solid var(--border);padding:0.3rem 0.8rem;border-radius:99px;font-size:0.78rem;color:var(--green);">📍 Highfield</span>
+          <span style="background:rgba(34,197,94,0.12);border:1px solid var(--border);padding:0.3rem 0.8rem;border-radius:99px;font-size:0.78rem;color:var(--green);">📍 Mbare</span>
+          <span style="background:rgba(34,197,94,0.12);border:1px solid var(--border);padding:0.3rem 0.8rem;border-radius:99px;font-size:0.78rem;color:var(--green);">📍 Glen Norah</span>
+          <span style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.08);padding:0.3rem 0.8rem;border-radius:99px;font-size:0.78rem;color:var(--muted);">+ more</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY US -->
+<section id="why">
+  <div class="section-inner">
+    <div class="section-header fade-in" style="text-align:center;">
+      <div class="section-label">Why Choose Us</div>
+      <h2 class="section-title">Built on Trust &amp; Speed</h2>
+    </div>
+    <div class="why-grid">
+      <div class="why-card fade-in">
+        <div class="why-icon">⚡</div>
+        <div class="why-title">Fast Response</div>
+        <p class="why-desc">We reply on WhatsApp within minutes and dispatch riders promptly after confirmation.</p>
+      </div>
+      <div class="why-card fade-in">
+        <div class="why-icon">💬</div>
+        <div class="why-title">WhatsApp-First</div>
+        <p class="why-desc">No app downloads. No registration. Just message us and we handle the rest.</p>
+      </div>
+      <div class="why-card fade-in">
+        <div class="why-icon">🔒</div>
+        <div class="why-title">Safe &amp; Secure</div>
+        <p class="why-desc">Every item is handled with care. Your packages and documents are always safe with us.</p>
+      </div>
+      <div class="why-card fade-in">
+        <div class="why-icon">💰</div>
+        <div class="why-title">Affordable Rates</div>
+        <p class="why-desc">Starting from just $2 per delivery. Honest, transparent pricing—always confirmed upfront.</p>
+      </div>
+      <div class="why-card fade-in">
+        <div class="why-icon">🤝</div>
+        <div class="why-title">Business Friendly</div>
+        <p class="why-desc">Commission-based riders, volume discounts, and dedicated support for local businesses.</p>
+      </div>
+      <div class="why-card fade-in">
+        <div class="why-icon">📈</div>
+        <div class="why-title">Growing Network</div>
+        <p class="why-desc">Expanding our fleet and coverage. The more you trust us, the better we get—for everyone.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA BANNER -->
+<div class="cta-banner">
+  <div class="section-inner">
+    <div class="section-label">Ready to Order?</div>
+    <h2 class="section-title fade-in">Place Your Delivery<br/>Right Now</h2>
+    <p class="section-sub fade-in">Tap the button below to open WhatsApp and start your order instantly. No forms. No fuss.</p>
+    <a href="https://wa.me/263711629798?text=Hello%2C%20I%20would%20like%20to%20place%20a%20delivery%20order." target="_blank" class="whatsapp-btn fade-in">
+      <span class="whatsapp-icon">💬</span> Chat on WhatsApp
+    </a>
+    <div class="phone-display fade-in">
+      WhatsApp &amp; Calls: <strong>+263 711 629 798</strong>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <a href="#" class="nav-logo">DEAN'S <span>DELIVERY</span></a>
+      <p class="footer-tagline">Fast, reliable last-mile delivery across Harare, Zimbabwe. Built lean. Built to last.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Services</h4>
+      <ul>
+        <li><a href="#services">Food Delivery</a></li>
+        <li><a href="#services">Grocery Runs</a></li>
+        <li><a href="#services">Documents</a></li>
+        <li><a href="#services">Parcel Delivery</a></li>
+        <li><a href="#services">Business Orders</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Contact</h4>
+      <ul>
+        <li><span>📱 +263 711 629 798</span></li>
+        <li><a href="https://wa.me/263711629798" target="_blank">💬 WhatsApp Us</a></li>
+        <li><span>📍 Harare, Zimbabwe</span></li>
+        <li><span>🕐 Mon–Sun · All hours</span></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2025 Dean's Delivery Services · Harare, Zimbabwe</span>
+    <span>Serving Harare · Chitungwiza · Norton</span>
+  </div>
+</footer>
+
+<script>
+  // Mobile nav toggle
+  function toggleMenu() {
+    document.getElementById('navLinks').classList.toggle('open');
+  }
+
+  // Close mobile nav on link click
+  document.querySelectorAll('.nav-links a').forEach(link => {
+    link.addEventListener('click', () => {
+      document.getElementById('navLinks').classList.remove('open');
+    });
+  });
+
+  // Scroll fade-in
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('visible'); }
+    });
+  }, { threshold: 0.12 });
+
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
